@@ -1,0 +1,143 @@
+<label class="dark-mode-switch">
+    <input type="checkbox">
+    <span class="dark-mode-slider"></span>
+</label>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const sliderElements = document.querySelectorAll(".dark-mode-slider");
+    
+    sliderElements.forEach(function(sliderElement) {
+      sliderElement.addEventListener("click", function() {
+        // Aplica o modo escuro apenas ao elemento com a classe 'dark'
+        const containers = document.querySelectorAll(".dark");
+        containers.forEach(function(container) {
+          container.classList.toggle("dark-mode-active");
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+.dark-mode-switch {
+  display: block;
+  --width-of-switch: 3.5em;
+  --height-of-switch: 2em;
+  --size-of-icon: 1.4em;
+  --slider-offset: 0.3em;
+  position: relative;
+  width: var(--width-of-switch);
+  height: var(--height-of-switch);
+}
+.dark-mode-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  
+}
+.dark-mode-slider {
+      border: solid 0px #2404642A; /* cor da borda*/
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 40% 50%, #ffffff, #b391f6); /* Cor do fundo do dia */
+  transition: .4s;
+  border-radius: 30px;
+}
+
+.dark-mode-slider:before {
+  position: absolute;
+  content: "";
+  height: var(--size-of-icon,1.4em);
+  width: var(--size-of-icon,1.4em);
+  border-radius: 20px;
+  left: var(--slider-offset,0.3em);
+  top: 50%;
+  transform: translateY(-50%);
+  background: radial-gradient(circle, #ffcf40 30%, #ff7e00 70%); /* Sol com gradiente mais suave */
+  transition: .4s;
+
+}
+input:checked + .dark-mode-slider {
+  background: #15111c; /* Cor de fundo da noite */
+  /* APAGUE AS DUAS LINHAS ABAIXO SE NÃO QUISER ESTRELAS */
+  background-image: radial-gradient(circle, #ffffff 1px, transparent 1px); /* Estrelas um pouco maiores e mais visíveis */
+  background-size: 15px 15px; /* Mais estrelas em um espaço menor */
+}
+
+input:checked + .dark-mode-slider:before {
+  left: calc(100% - (var(--size-of-icon,1.4em) + var(--slider-offset,0.3em)));
+  background: #303136;
+  box-shadow: inset -3px -2px 5px -2px #dcdcdc, inset -10px -4px 0 0 #b0b0b0; /* Cor da Lua */
+}
+
+
+/* Modo escuro aplicado aos contêineres com a classe 'dark' */
+.dark.dark-mode-active {
+    background-color: #373737 !important;
+    color: white;
+    transition: background-color 1s, color 1s;
+
+}
+
+/* Modo claro aplicado aos contêineres com a classe 'dark' (opcional) */
+.dark {
+    transition: background-color 1s, color 1s;
+}
+
+/* Modo escuro aplicado aos textos e títulos dentro dos contêineres com a classe 'dark' */
+.dark.dark-mode-active h1,
+.dark.dark-mode-active h2,
+.dark.dark-mode-active h3,
+.dark.dark-mode-active h4,
+.dark.dark-mode-active h5,
+.dark.dark-mode-active h6,
+.dark.dark-mode-active p,
+.dark.dark-mode-active .elementor-heading-title {
+    color: white !important;
+    transition: color 1s;
+}
+
+/* Modo escuro aplicado aos ícones SVG dentro dos contêineres com a classe 'dark' */
+.dark.dark-mode-active .elementor-icon svg {
+    fill: #ffffff;
+    transition: fill 1s;
+
+}
+
+/* Modo escuro aplicado aos ícones de fonte dentro dos contêineres com a classe 'dark' */
+.dark.dark-mode-active .elementor-icon i {
+    color: #ffffff;
+    transition: color 1s;
+
+}
+
+/* Modo claro aplicado aos textos e títulos dentro dos contêineres com a classe 'dark' */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6,
+.dark p,
+.dark {
+    transition: color 1s;
+
+}
+
+/* Modo claro aplicado aos ícones SVG dentro dos contêineres com a classe 'dark' */
+.dark .elementor-icon svg {
+    transition: fill 1s;
+
+}
+
+/* Modo claro aplicado aos ícones de fonte dentro dos contêineres com a classe 'dark' */
+.dark .elementor-icon i {
+    transition: color 1s;
+
+}
+</style>
